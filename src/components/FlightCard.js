@@ -40,9 +40,7 @@ const FlightCard = ({ flight, type, isSelected, onSelect }) => {
 
     const start = segments[0].arrival;
     const end = segments[1].departure;
-
     const duration = moment.duration(moment(end).diff(moment(start)));
-
 
     return `${duration.hours()}hr ${duration.minutes()}min`;
   };
@@ -127,7 +125,7 @@ const FlightCard = ({ flight, type, isSelected, onSelect }) => {
 
       <CardContent>
         <Stack spacing={2}>
-          {/* Havayolu ve Fiyat */}
+          {/* price */}
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <img
@@ -146,7 +144,7 @@ const FlightCard = ({ flight, type, isSelected, onSelect }) => {
 
           <Divider />
 
-          {/* Uçuş Detayları */}
+          {/* Flight Details */}
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             {/* Kalkış */}
             <Box sx={{ textAlign: 'center' }}>
@@ -159,7 +157,7 @@ const FlightCard = ({ flight, type, isSelected, onSelect }) => {
               </Typography>
             </Box>
 
-            {/* Süre ve Durak Bilgisi */}
+            {/* Time and Stops */}
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 <AccessTimeIcon fontSize="small" />
@@ -173,7 +171,7 @@ const FlightCard = ({ flight, type, isSelected, onSelect }) => {
               />
             </Box>
 
-            {/* Varış */}
+            {/* Arrive */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Box sx={{ textAlign: 'center' }}>
                 <FlightLandIcon color="action" />
@@ -187,16 +185,14 @@ const FlightCard = ({ flight, type, isSelected, onSelect }) => {
               <IconButton
                 onClick={() => setExpanded(!expanded)}
                 aria-expanded={expanded}
-                aria-label="detayları göster"
+                aria-label="show details"
               >
                 {expanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </IconButton>
             </Box>
           </Box>
 
-
-
-          {/* Detay Bölümü */}
+          {/* Details */}
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             {renderFlightDetails()}
           </Collapse>

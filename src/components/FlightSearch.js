@@ -50,7 +50,6 @@ const FlightSearch = () => {
 
   const passengerList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-
   const handleSearch = () => {
     const requiredFields = tripType === 'roundTrip'
       ? ['origin', 'destination', 'departureDate', 'returnDate']
@@ -83,17 +82,17 @@ const FlightSearch = () => {
 
   return (
     <Container maxWidth="md">
-      <Paper 
-        sx={{ 
-          p: { xs: 2, sm: 3 }, // Mobilde padding azaltıldı
-          mt: 3 
+      <Paper
+        sx={{
+          p: { xs: 2, sm: 3 },
+          mt: 3
         }}
       >
-        <Stack spacing={{ xs: 2, sm: 3 }}> {/* Mobilde boşluklar azaltıldı */}
-          {/* Üst Kontroller */}
-          <Stack 
-            direction={{ xs: 'column', sm: 'row' }} 
-            spacing={2} 
+        <Stack spacing={{ xs: 2, sm: 3 }}>
+
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
             alignItems={{ xs: 'stretch', sm: 'center' }}
           >
             <ToggleButtonGroup
@@ -101,8 +100,8 @@ const FlightSearch = () => {
               exclusive
               onChange={handleTripTypeChange}
               size="small"
-              fullWidth // Mobilde tam genişlik
-              sx={{ 
+              fullWidth
+              sx={{
                 display: 'flex',
                 '& .MuiToggleButton-root': {
                   flex: 1
@@ -113,9 +112,9 @@ const FlightSearch = () => {
               <ToggleButton value="oneWay">{FLIGHT_TEXTS.SEARCH.ONE_WAY}</ToggleButton>
             </ToggleButtonGroup>
 
-            <Stack 
-              direction={{ xs: 'row' }} 
-              spacing={2} 
+            <Stack
+              direction={{ xs: 'row' }}
+              spacing={2}
               sx={{ width: { xs: '100%', sm: 'auto' } }}
             >
               <FormControl size="small" sx={{ flex: 1 }}>
@@ -145,52 +144,50 @@ const FlightSearch = () => {
               </FormControl>
             </Stack>
           </Stack>
-
-          {/* Lokasyon Seçiciler */}
-          <Stack 
-            direction={{ xs: 'column', md: 'row' }} 
-            spacing={2} 
+          <Stack
+            direction={{ xs: 'column', md: 'row' }}
+            spacing={2}
             alignItems="center"
           >
-  <Autocomplete
-  fullWidth
-  options={originOptions || []}
-  getOptionLabel={(option) => option?.title || ''}
-  value={searchParams.origin}
-  onChange={(event, newValue) => {
-    dispatch(setSearchParams({ origin: newValue }));
-  }}
-  onInputChange={(event, newInputValue) => {
-    dispatch(searchAirports({ searchText: newInputValue, isOrigin: true }));
-  }}
-  loading={originLoading}
-  renderInput={(params) => (
-    <TextField
-      {...params}
-      label={FLIGHT_TEXTS.SEARCH.FROM}
-      required
-      InputProps={{
-        ...params.InputProps,
-        endAdornment: (
-          <>
-            {originLoading ? (
-              <CircularProgress color="inherit" size={20} />
-            ) : null}
-            {params.InputProps.endAdornment}
-          </>
-        ),
-      }}
-    />
-  )}
-  isOptionEqualToValue={(option, value) => 
-    option?.id === value?.id || option?.title === value?.title
-  }
-/>
+            <Autocomplete
+              fullWidth
+              options={originOptions || []}
+              getOptionLabel={(option) => option?.title || ''}
+              value={searchParams.origin}
+              onChange={(event, newValue) => {
+                dispatch(setSearchParams({ origin: newValue }));
+              }}
+              onInputChange={(event, newInputValue) => {
+                dispatch(searchAirports({ searchText: newInputValue, isOrigin: true }));
+              }}
+              loading={originLoading}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={FLIGHT_TEXTS.SEARCH.FROM}
+                  required
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <>
+                        {originLoading ? (
+                          <CircularProgress color="inherit" size={20} />
+                        ) : null}
+                        {params.InputProps.endAdornment}
+                      </>
+                    ),
+                  }}
+                />
+              )}
+              isOptionEqualToValue={(option, value) =>
+                option?.id === value?.id || option?.title === value?.title
+              }
+            />
 
 
             <Button
               onClick={() => dispatch(swapLocations())}
-              sx={{ 
+              sx={{
                 minWidth: 'auto',
                 transform: { xs: 'rotate(90deg)', md: 'rotate(0deg)' } // Mobilde dikey yön değiştirme
               }}
@@ -199,45 +196,44 @@ const FlightSearch = () => {
             </Button>
 
             <Autocomplete
-  fullWidth
-  options={destinationOptions || []}
-  getOptionLabel={(option) => option?.title || ''}
-  value={searchParams.destination}
-  onChange={(event, newValue) => {
-    dispatch(setSearchParams({ destination: newValue }));
-  }}
-  onInputChange={(event, newInputValue) => {
-    dispatch(searchAirports({ searchText: newInputValue, isOrigin: false }));
-  }}
-  loading={destLoading}
-  renderInput={(params) => (
-    <TextField
-      {...params}
-      label={FLIGHT_TEXTS.SEARCH.TO}
-      required
-      InputProps={{
-        ...params.InputProps,
-        endAdornment: (
-          <>
-            {destLoading ? (
-              <CircularProgress color="inherit" size={20} />
-            ) : null}
-            {params.InputProps.endAdornment}
-          </>
-        ),
-      }}
-    />
-  )}
-  isOptionEqualToValue={(option, value) => 
-    option?.id === value?.id || option?.title === value?.title
-  }
-/>
+              fullWidth
+              options={destinationOptions || []}
+              getOptionLabel={(option) => option?.title || ''}
+              value={searchParams.destination}
+              onChange={(event, newValue) => {
+                dispatch(setSearchParams({ destination: newValue }));
+              }}
+              onInputChange={(event, newInputValue) => {
+                dispatch(searchAirports({ searchText: newInputValue, isOrigin: false }));
+              }}
+              loading={destLoading}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={FLIGHT_TEXTS.SEARCH.TO}
+                  required
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <>
+                        {destLoading ? (
+                          <CircularProgress color="inherit" size={20} />
+                        ) : null}
+                        {params.InputProps.endAdornment}
+                      </>
+                    ),
+                  }}
+                />
+              )}
+              isOptionEqualToValue={(option, value) =>
+                option?.id === value?.id || option?.title === value?.title
+              }
+            />
 
           </Stack>
 
-          {/* Tarih Seçiciler */}
-          <Stack 
-            direction={{ xs: 'column', sm: 'row' }} 
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
             spacing={2}
           >
             <DatePicker

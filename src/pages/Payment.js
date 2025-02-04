@@ -1,4 +1,3 @@
-// PaymentPage.js
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
@@ -52,14 +51,12 @@ const Payment = () => {
         spacing={{ xs: 2, sm: 4 }}
         sx={{ mb: { xs: 2, sm: 4 } }}
       >
-        {/* Başlık ve Toplam Fiyat */}
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           alignItems={{ xs: 'stretch', sm: 'center' }}
           justifyContent="space-between"
           spacing={2}
         >
-          {/* Şehirler */}
           <Stack
             direction="row"
             alignItems="center"
@@ -88,8 +85,6 @@ const Payment = () => {
               {selectedDepartureFlight.legs[0].destination.city}
             </Typography>
           </Stack>
-
-          {/* Toplam Fiyat */}
           <Box sx={{
             display: 'flex',
             alignItems: 'center',
@@ -114,7 +109,6 @@ const Payment = () => {
           </Box>
         </Stack>
 
-        {/* Seçilen Uçuşlar */}
         <Stack spacing={{ xs: 2, sm: 3 }}>
           <Typography 
             variant={isMobile ? "h6" : "h5"} 
@@ -123,7 +117,7 @@ const Payment = () => {
             {FLIGHT_TEXTS.RESULTS.SELECTED_FLIGHTS}
           </Typography>
 
-          {/* Gidiş Uçuşu */}
+          {/* departure*/}
           <Box>
             <Typography 
               variant="subtitle1" 
@@ -143,7 +137,7 @@ const Payment = () => {
             />
           </Box>
 
-          {/* Dönüş Uçuşu */}
+          {/* return*/}
           {selectedReturnFlight && (
             <Box>
               <Typography 

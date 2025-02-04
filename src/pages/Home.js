@@ -1,4 +1,3 @@
-// Home.js
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Backdrop, CircularProgress } from '@mui/material';
@@ -45,13 +44,11 @@ const Home = () => {
        Filters
       </Typography>
 
-
-
       <FormControl sx={{ minWidth: 200 }}>
         <InputLabel>Sort By</InputLabel>
         <Select
           value={sortBy}
-          label="Sıralama"
+          label="Sort"
           onChange={handleSortChange}
           size="small"
         >
@@ -76,7 +73,6 @@ const Home = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
       <Container maxWidth="xl">
-        {/* Üst Kısım - Arama Formu */}
         <Box sx={{ pb: 6 }}>
           <Box
             sx={{
@@ -125,18 +121,15 @@ const Home = () => {
           <FlightSearch />
         </Box>
 
-        {/* Alt Kısım - Sonuçlar ve Filtreler */}
         <Collapse in={hasResults}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 4 }}>
-            {/* Filtre Paneli */}
+            {/* Filter Panel */}
             <Container>
               <Paper>
                 <FilterPanel />
               </Paper>
             </Container>
-
-
-            {/* Uçuş Listesi */}
+            {/* FlightList */}
             <Box>
               <FlightList sortBy={sortBy} />
             </Box>

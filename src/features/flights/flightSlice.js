@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {API_CONFIG} from '../../config/api'
 
-// Havaalanı arama işlemi için async thunk
+// searchAirports async thunk
 export const searchAirports = createAsyncThunk(
   'flights/searchAirports',
   async ({ searchText, isOrigin }) => {
@@ -32,7 +32,7 @@ export const searchAirports = createAsyncThunk(
   }
 );
 
-// Uçuş arama işlemi için async thunk
+// fetchFlights async thunk
 export const fetchFlights = createAsyncThunk(
   'flights/fetchFlights',
   async (searchData) => {
@@ -41,7 +41,7 @@ export const fetchFlights = createAsyncThunk(
       headers: API_CONFIG.HEADERS
     };
 
-    // Gidiş uçuşu için istek
+    //departing flight request
     const departureParams = {
       originEntityId: searchData.originEntityId,
       destinationEntityId: searchData.destinationEntityId,
